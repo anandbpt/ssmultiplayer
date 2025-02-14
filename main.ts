@@ -1,14 +1,13 @@
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         2 2 5 
-        `, sd, 400000, 0)
+        `, sd, 400, 0)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprites.destroy(mySprite2, effects.fire, 500)
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
-    sprites.destroy(sd, effects.fire, 500)
     sprites.destroy(mySprite, effects.fire, 500)
     info.changeLifeBy(-1)
     game.splash("if player 1 dead", "change then chosseeblue and revind")
@@ -16,7 +15,10 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         2 2 5 
-        `, mySprite, 400000, 0)
+        `, mySprite, 400, 0)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(sd, effects.fire, 500)
 })
 let mySprite2: Sprite = null
 let projectile: Sprite = null
@@ -59,11 +61,11 @@ sd = sprites.create(img`
     2 2 2 . . . . . 1 . . . . . . . 
     2 2 . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-info.setLife(3)
+info.setLife(2)
 controller.player1.moveSprite(mySprite, 100, 100)
 controller.player2.moveSprite(sd, 100, 100)
 mySprite.setPosition(4, 22)
-sd.setPosition(6, 45)
+sd.setPosition(2, -3)
 game.onUpdateInterval(500, function () {
     mySprite2 = sprites.create(img`
         . . . . . . . . . . . . . . e e 
