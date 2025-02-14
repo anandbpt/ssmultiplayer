@@ -8,14 +8,10 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, oth
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
-    if (true) {
-        sprites.destroy(sd, effects.fire, 500)
-        sprites.destroy(mySprite, effects.fire, 500)
-        info.changeLifeBy(-1)
-        game.splash("if player 1 dead", "change then chosseeblue and revind")
-    } else {
-    	
-    }
+    sprites.destroy(sd, effects.fire, 500)
+    sprites.destroy(mySprite, effects.fire, 500)
+    info.changeLifeBy(-1)
+    game.splash("if player 1 dead", "change then chosseeblue and revind")
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
@@ -44,7 +40,7 @@ mySprite = sprites.create(img`
     2 2 2 . . . . . 1 . . . . . . . 
     2 2 . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-info.setLife(1)
+info.setLife(2)
 sd = sprites.create(img`
     e e . . . . . . . . . . . . . . 
     e e e . . . . . . . . . . . . . 
@@ -63,7 +59,7 @@ sd = sprites.create(img`
     2 2 2 . . . . . 1 . . . . . . . 
     2 2 . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-info.setLife(1)
+info.setLife(3)
 controller.player1.moveSprite(mySprite, 100, 100)
 controller.player2.moveSprite(sd, 100, 100)
 mySprite.setPosition(4, 22)
